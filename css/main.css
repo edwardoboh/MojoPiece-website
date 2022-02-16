@@ -357,6 +357,19 @@ footer .copy {
   }
 }
 
+footer .go-up {
+  position: relative;
+  bottom: 2rem;
+  width: 2rem;
+  height: 2rem;
+  float: right;
+  cursor: pointer;
+}
+
+footer .go-up svg path {
+  fill: #d4d4d4;
+}
+
 @media only screen and (min-width: 700px) {
   .menu-open,
   .menu-close {
