@@ -21,7 +21,7 @@ $colors: (
 body {
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto", sans-serif;
   color: white;
 }
 
@@ -152,6 +152,7 @@ header {
   p {
     margin-top: 1rem;
     font-size: 0.8em;
+    line-height: 1.5rem;
   }
 }
 
@@ -171,6 +172,7 @@ header {
     }
     p {
       margin-top: 0.5rem;
+      line-height: 1.5rem;
       font-size: 0.8em;
     }
     @media only screen and (min-width: 480px) {
