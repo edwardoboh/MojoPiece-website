@@ -1,0 +1,400 @@
+$colors: (
+  color-main: #eb5d66,
+  color-text: white,
+  color-dark: rgb(26, 26, 26),
+  color-light: rgb(212, 212, 212),
+  color-mid: rgb(172, 172, 172),
+);
+
+@function color($col) {
+  @return map-get($colors, $col);
+}
+
+@mixin border-top {
+  border-top: rgb(68, 68, 68) solid 1px;
+}
+
+@mixin border-bottom {
+  border-bottom: rgb(68, 68, 68) solid 1px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+.wrapper {
+  padding: 1.5rem;
+  @media only screen and (min-width: 950px) {
+    max-width: 950px;
+    margin: 0 auto;
+  }
+}
+
+.image-top {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  background: url("../img/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: bgIn 0.5s forwards;
+}
+
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+
+  .logo {
+    font-weight: 600;
+    color: color(color-text);
+    span {
+      color: color(color-main);
+    }
+  }
+
+  .animate {
+    transform: translateX(0);
+  }
+
+  nav {
+    position: fixed;
+    z-index: 99;
+    right: 0;
+    top: 0;
+    background-color: color(color-light);
+    width: 50vw;
+    height: 100%;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+
+    .menu-close {
+      cursor: pointer;
+      width: 1.5rem;
+      float: right;
+      padding: 0.7rem;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      display: grid;
+      align-content: center;
+      height: 30%;
+      width: 100%;
+
+      li {
+        padding: 0.7rem;
+        &:hover {
+          background-color: color(color-mid);
+        }
+      }
+
+      a {
+        color: color(color-dark);
+        display: block;
+      }
+    }
+  }
+
+  .menu-open {
+    width: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+.hero {
+  height: 90vh;
+  .arrow-down {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0.8rem;
+    height: 4rem;
+    stroke: color(color-text);
+    path {
+      fill: color(color-text);
+    }
+    @media only screen and (min-width: 700px) {
+      stroke: color(color-dark);
+      path {
+        fill: color(color-dark);
+      }
+    }
+    animation: arrowDown 1s alternate-reverse infinite;
+  }
+  h1 {
+    font-size: 1.8em;
+    margin-top: 5rem;
+    text-align: left;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 2.5rem;
+      height: 0.2rem;
+      background-color: color(color-main);
+      margin-left: 0.2rem;
+      animation: reduce 2s forwards;
+    }
+    @media only screen and (min-width: 480px) {
+      margin-top: 7rem;
+    }
+  }
+  p {
+    margin-top: 1rem;
+    font-size: 0.8em;
+  }
+}
+
+.main {
+  color: color(color-dark);
+  img {
+    width: 100%;
+    border-radius: 3px;
+    // object-fit: cover;
+    // height: 11rem;
+  }
+  .features {
+    margin-bottom: 2.5rem;
+    h3 {
+      margin: 0;
+      padding: 0;
+    }
+    p {
+      margin-top: 0.5rem;
+      font-size: 0.8em;
+    }
+    @media only screen and (min-width: 480px) {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      grid-template-areas: "text image";
+      gap: 1.5rem;
+      text-align: right;
+      div {
+        display: grid;
+        align-content: center;
+      }
+    }
+  }
+
+  .flip {
+    text-align: left;
+    img {
+      @media only screen and (min-width: 480px) {
+        grid-area: text;
+      }
+    }
+  }
+}
+
+footer {
+  box-sizing: border-box;
+  background-color: color(color-dark);
+  //   height: 40vh;
+  width: 100%;
+  padding: 2rem 1rem;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    li {
+      padding: 1rem 0;
+    }
+  }
+
+  a {
+    color: color(color-light);
+  }
+
+  .top {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    h1,
+    p {
+      margin: 0.3rem;
+      &:nth-child(3) {
+        margin-top: 2rem;
+        font-size: 0.8em;
+        font-weight: lighter;
+      }
+    }
+    span {
+      color: color(color-main);
+      font-weight: bolder;
+    }
+    .author {
+      text-transform: lowercase;
+    }
+  }
+
+  .about {
+    li {
+      // border-top: rgb(68, 68, 68) solid 1px;
+      @include border-top();
+      &:nth-child(3) {
+        // border-bottom: rgb(68, 68, 68) solid 1px;
+        @include border-bottom();
+      }
+    }
+  }
+
+  .history {
+    h4 {
+      margin: 0;
+    }
+    a {
+      text-transform: capitalize;
+    }
+  }
+
+  .more {
+    h4 {
+      margin: 0;
+    }
+    li {
+      @include border-top();
+      &:nth-child(2) {
+        @include border-bottom();
+      }
+    }
+  }
+
+  .second {
+    font-size: 0.9em;
+    display: flex;
+    gap: 4rem;
+    li {
+      font-weight: lighter;
+    }
+    a {
+      text-transform: capitalize;
+      color: color(color-mid);
+    }
+    @media only screen and (min-width: 900px) {
+      ul {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+    }
+  }
+  .copy {
+    font-size: 0.7em;
+    font-weight: lighter;
+    text-align: center;
+    padding-top: 1rem;
+    @include border-top();
+  }
+
+  .first {
+    @media only screen and (min-width: 900px) {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      justify-content: space-between;
+      .top {
+        width: fit-content;
+      }
+      .about,
+      .history,
+      .more {
+        font-size: 0.8em;
+        li {
+          border: unset;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .menu-open,
+  .menu-close {
+    display: none;
+  }
+
+  .logo {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: -0.5rem;
+      left: -0.4rem;
+      width: 7rem;
+      height: 2rem;
+      background-color: rgb(211, 209, 209);
+      z-index: -1;
+    }
+  }
+
+  header nav {
+    transform: unset;
+    position: absolute;
+    background-color: unset;
+    width: fit-content;
+    height: fit-content;
+    ul a {
+      color: color(color-main);
+    }
+    ul {
+      display: flex;
+      height: fit-content;
+      li {
+        &:hover {
+          a {
+            color: color(color-dark);
+          }
+        }
+      }
+    }
+  }
+
+  .image-top {
+    width: 50vw;
+    height: 100vh;
+    right: 0;
+  }
+
+  .hero {
+    width: 30vw;
+    height: 100vh;
+    color: color(color-dark);
+  }
+}
+
+@keyframes arrowDown {
+  from {
+    transform: translateY(-30px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bgIn {
+  from {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes reduce {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 2.5rem;
+  }
+}
